@@ -71,7 +71,7 @@
 // @section info
 
 // Author info of this build printed to the host during boot and M115
-#define STRING_CONFIG_H_AUTHOR "(thisiskeithb, Ender-3)" // Who made the changes.
+#define STRING_CONFIG_H_AUTHOR "Jyri Turkia" // Who made the changes.
 //#define CUSTOM_VERSION_FILE Version.h // Path from the root directory (no quotes)f
 
 /**
@@ -104,7 +104,22 @@
  *
  * :[-1, 0, 1, 2, 3, 4, 5, 6, 7]
  */
-#define SERIAL_PORT -1
+/*
+* framework has bug in serials
+/home/jyri/.platformio/packages/framework-arduino-lpc176x/cores/arduino/HardwareSerial.h
+else if (UARTx == LPC_UART3) {
+      // Initialize UART3 pin connect
+      PinCfg.Funcnum = 3; //was 1
+      PinCfg.OpenDrain = 0;
+      PinCfg.Pinmode = 0;
+      PinCfg.Pinnum = 28; //was 0
+      PinCfg.Portnum = 4; //was 0
+      PINSEL_ConfigPin(&PinCfg);
+      PinCfg.Pinnum = 29; // was 1
+      PINSEL_ConfigPin(&PinCfg);
+    }
+*/
+#define SERIAL_PORT 3
 
 /**
  * Select a secondary serial port on the board to use for communication with the host.
