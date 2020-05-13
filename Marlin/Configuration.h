@@ -136,7 +136,7 @@ else if (UARTx == LPC_UART3) {
  *
  * :[2400, 9600, 19200, 38400, 57600, 115200, 250000, 500000, 1000000]
  */
-#define BAUDRATE 115200
+#define BAUDRATE 250000
 
 // Enable the Bluetooth serial interface on AT90USB devices
 //#define BLUETOOTH
@@ -151,7 +151,7 @@ else if (UARTx == LPC_UART3) {
 
 // Printer's unique ID, used by some programs to differentiate between machines.
 // Choose your own or use a service like http://www.uuidgenerator.net/version4
-//#define MACHINE_UUID "00000000-0000-0000-0000-000000000000"
+#define MACHINE_UUID "8774d01b-673d-4644-bbf8-7945a81d8b39"
 
 // @section extruder
 
