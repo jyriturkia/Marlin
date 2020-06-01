@@ -21,30 +21,39 @@
  */
 #pragma once
 
-//
-// FYSETC F6 v1.4 pin assignments
-//
+#define SKR_MINI_E3_V2
 
-#define BOARD_INFO_NAME "FYSETC F6 1.4"
-
-#define Z_MAX_PIN                              2
-
-#if HAS_TMC_UART
-  /**
-   * TMC2208/TMC2209 stepper drivers
-   */
-  #define X_SERIAL_RX_PIN                     72
-  #define X_SERIAL_TX_PIN                     71
-  #define Y_SERIAL_RX_PIN                     73
-  #define Y_SERIAL_TX_PIN                     78
-  #define Z_SERIAL_RX_PIN                     75
-  #define Z_SERIAL_TX_PIN                     79
-  #define E0_SERIAL_RX_PIN                    77
-  #define E0_SERIAL_TX_PIN                    81
-  #define E1_SERIAL_RX_PIN                    76
-  #define E1_SERIAL_TX_PIN                    80
-  #define E2_SERIAL_RX_PIN                    62
-  #define E2_SERIAL_TX_PIN                    82
+// Onboard I2C EEPROM
+#if NO_EEPROM_SELECTED
+  #define I2C_EEPROM
+  #define MARLIN_EEPROM_SIZE 0x1000                 // 4KB
+  #undef NO_EEPROM_SELECTED
 #endif
 
-#include "pins_FYSETC_F6_13.h"
+#include "pins_BTT_SKR_MINI_E3.h"
+
+#define BOARD_INFO_NAME "BIGTREE SKR Mini E3 V2.0"
+
+// Release PA13/PA14 (led, usb control) from SWD pins
+#define DISABLE_DEBUG
+
+#define NEOPIXEL_PIN                       PA8   // LED driving pin
+
+#define PS_ON_PIN                          PC13  // Power Supply Control
+
+#define FAN1_PIN                           PC7
+
+#ifndef CONTROLLER_FAN_PIN
+  #define CONTROLLER_FAN_PIN               FAN1_PIN
+#endif
+
+/**
+ * TMC220x stepper drivers
+ * Hardware serial communication ports.
+ */
+#if HAS_TMC_UART
+  #define X_HARDWARE_SERIAL  Serial4
+  #define Y_HARDWARE_SERIAL  Serial4
+  #define Z_HARDWARE_SERIAL  Serial4
+  #define E0_HARDWARE_SERIAL Serial4
+#endif
